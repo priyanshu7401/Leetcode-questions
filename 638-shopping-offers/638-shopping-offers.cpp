@@ -1,39 +1,47 @@
 #define all(a) (a).begin(), (a).end()
+
+void operator+=(vector<int> &a, const vector<int> &b) {
+    for (int i = 0; i < a.size(); i++)
+        a[i] += b[i];
+}
+
+void operator-=(vector<int> &a, const vector<int> &b) {
+    for (int i = 0; i < a.size(); i++)
+        a[i] -= b[i];
+}
+
+bool operator<(const vector<int> &a, const int &n) {
+    for (int i : a)
+        if (i < n)
+            return true;
+    return false;
+}
+
+bool operator==(const vector<int> &a, const int &n) {
+    for (int i : a)
+        if (i != n)
+            return false;
+    return true;
+}
+
 class Solution {
 public:
     int n;
-    int dp(vector<vector<int>>&special,vector<int>&needs,int i)
-    {
-       int ans=1e5,flag=0;
-       if(accumulate(all(needs),0)==0)
-            return 0;
-       if(i==size(special))return 1e5;
-       for(int j=0;;j++)
-       {
-           vector<int>temp=needs;
-           int k=0;
-           for(;k<n;k++)
-           {       
-               temp[k]-=j*special[i][k];
-               if(temp[k]<0)break;
-           }
-           if(k!=n)
-               return ans;
-           ans=min(ans,j*special[i][n]+dp(special,temp,i+1));
-       }
-        return 0;
+    
+int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs, int cost = 0) {
+    if (needs < 0)
+        return INT_MAX;
+
+    int m = inner_product(needs.begin(), needs.end(), price.begin(), cost);
+
+    for (auto &offer : special) {
+        if (cost + offer.back() >= m) // pruning
+            continue;
+        needs -= offer;
+        m = min(m, shoppingOffers(price, special, needs, cost + offer.back()));
+        needs += offer;
     }
-    int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) 
-    {
-        n=size(price);
-        for(int i=0;i<size(price);i++)
-        {
-            vector<int>temp(n+1,0);
-            temp[i]=1;
-            temp[n]=price[i];
-            special.push_back(temp);
-        }
-        int ans=dp(special,needs,0);
-        return ans;
-    }
+
+    return m;
+}
 };
