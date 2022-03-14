@@ -4,11 +4,10 @@ public:
     long long countVowels(string word) 
     {
     ll last=0,prefix=0,n=size(word);
-    string vowel="aeiou";
-    for(int i=0;i<n;i++)
+    for(ll i=0;i<n;i++)
     {
-        if(vowel.find(word[i])!=string::npos)last=(last+(i+1));
-        prefix+=last;
+        if(string("aeiou").find(word[i])!=string::npos)
+            prefix+=(n-i)*(i+1);
     }
         return prefix;
     }
