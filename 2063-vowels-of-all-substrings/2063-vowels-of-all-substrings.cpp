@@ -7,11 +7,8 @@ public:
     string vowel="aeiou";
     for(int i=0;i<n;i++)
     {
-        if(vowel.find(word[i])!=string::npos)
-        {
-            last=(last+(i+1));
-        }
-        prefix=(prefix+last);
+        if(vowel.find(word[i])!=string::npos)last=(last+(i+1));
+        prefix+=last;
     }
         return prefix;
     }
