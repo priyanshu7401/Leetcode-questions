@@ -11,19 +11,24 @@ class Solution {
 public:
     vector<int> findDiagonalOrder(vector<vector<int>>& nums) 
     {
-    priority_queue<vector<int>,vector<vector<int>>,mycmp>pq;
+    map<int,vector<int>>map;
     vector<int>ans;
+    int maxkey=0;
     for(int i=0;i<nums.size();i++)
     {
-        pq.push({i,0});
+        for(int j=0;j<nums[i].size();j++)
+        {
+            map[i+j].push_back(nums[i][j]);
+            maxkey=max(maxkey,i+j);
+        }
     }
-    while(!pq.empty())
+    for(int i=0;i<=maxkey;i++)
     {
-        auto temp=pq.top();
-        pq.pop();
-        ans.push_back(nums[temp[0]][temp[1]++]);
-        if(temp[1]!=nums[temp[0]].size())
-            pq.push(temp);
+        for(auto j=map[i].rbegin();j!=map[i].rend();j++)
+        {
+            ans.push_back(*j);
+            
+        }
     }
         return ans;
     }
