@@ -10,13 +10,9 @@ public:
             if(!st.empty())
                 st.pop();
         }
-        else if(logs[i]=="./")
+        else if(logs[i]!="./")
         {
-            continue;
-        }
-        else
-        {
-            st.push(logs[i]);
+             st.push(logs[i]);
         }
     }
         return st.size();
