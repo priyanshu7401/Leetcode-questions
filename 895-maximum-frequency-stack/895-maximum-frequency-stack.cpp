@@ -2,7 +2,7 @@ class FreqStack {
 public:
     unordered_map<int,stack<int>>DSA;
     unordered_map<int,int>counter;
-    stack<int>s;
+    int maxfreq=0;
     FreqStack() 
     {
         
@@ -11,16 +11,16 @@ public:
     void push(int val) 
     {
     DSA[++counter[val]].push(val);   
-    if(DSA[counter[val]].size()==1)
-        s.push(counter[val]);
+    maxfreq=max(maxfreq,counter[val]);
+    
     }
     
     int pop() 
     {
-        int ele=DSA[s.top()].top(); 
+        int ele=DSA[maxfreq].top(); 
         counter[ele]--;
-        DSA[s.top()].pop();
-        if(DSA[s.top()].empty())s.pop();
+        DSA[maxfreq].pop();
+        if(DSA[maxfreq].empty())maxfreq--;
         return ele;
     }
 };
