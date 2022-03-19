@@ -1,7 +1,7 @@
 class FreqStack {
 public:
-    map<int,stack<int>>DSA;
-    map<int,int>counter;
+    unordered_map<int,stack<int>>DSA;
+    unordered_map<int,int>counter;
     stack<int>s;
     FreqStack() 
     {
