@@ -9,14 +9,14 @@ public:
         map[s[i]]=i;
     }
     int last=0;
-    int start=0; 
+    int start=-1; 
     for(int i=0;i<s.size();i++)
     {
         last=max(last,map[s[i]]);
         if(i==last)
         {
-            ans.push_back(last-start+1);
-            start=last+1;
+            ans.push_back(last-start);
+            start=last;
         }
     }
     return ans;
