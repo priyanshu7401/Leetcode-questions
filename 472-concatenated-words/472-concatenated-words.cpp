@@ -19,10 +19,10 @@
 class Solution {
 public:
     
-    bool dp(string s,unordered_set<string>&set)
+    bool dp(string& s,unordered_set<string>&set)
     {
         int n=size(s);
-        vector<int>memo(size(s)+1,0);
+        vector<int>memo(n+1,0);
         memo[n]=true;
         for(int i=n-1;i>=0;i--)
         {
