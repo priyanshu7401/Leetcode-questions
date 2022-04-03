@@ -10,6 +10,6 @@ public:
         for(;j>=i&&nums[j]<=nums[i-1];j--);
         swap(nums[i-1],nums[j]);
         }
-        sort(begin(nums)+i,end(nums));
+        reverse(begin(nums)+i,end(nums));
     }
 };
