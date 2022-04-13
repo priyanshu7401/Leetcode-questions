@@ -1,22 +1,15 @@
 class Solution {
 public:
-    int minCost(string colors, vector<int>& neededTime) 
+    int minCost(string colors, vector<int>& cost) 
     {
     int ans=0,n=size(colors);
-    for(int i=0;i<n;)
+    for(int i=1;i<n;i++)
     {
-     int maxi=neededTime[i],j=i+1,sum=neededTime[i];
-     while(j<n&&colors[i]==colors[j])
-     {
-         sum+=neededTime[j];
-         maxi=max(neededTime[j],maxi);
-         j++;
-     }
-     if(i+1!=j)
-     {
-      ans+=sum-maxi;   
-     }
-        i=j;
+        if(colors[i]==colors[i-1])
+        {
+            ans+=min(cost[i],cost[i-1]);
+            cost[i]=max(cost[i],cost[i-1]);
+        }
     }
         return ans;
     }
