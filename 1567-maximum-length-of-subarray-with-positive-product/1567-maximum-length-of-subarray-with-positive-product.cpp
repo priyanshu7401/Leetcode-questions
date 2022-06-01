@@ -3,26 +3,20 @@ public:
     
     int getMaxLen(vector<int>& nums) 
     {
-        int n=size(nums),neg=n,last=-1,pro=1,ans=0;
+        int n=size(nums),neg=0,pos=0,ans=0;
         for(int i=0;i<n;i++)
         {
-            pro*=((nums[i]>0)-(nums[i]<0));
-            // cout<<pro;
-            if(pro>0)
+            pos++;
+            if(neg!=0) neg++;
+            if(nums[i]<0)
             {
-                ans=max(ans,i-last);
+               swap(pos,neg); 
             }
-            if(pro<0)
+            if(!nums[i])
             {
-                neg=min(i,neg);
-                ans=max(ans,i-neg);
+                pos=0,neg=0;
             }
-            if(pro==0)
-            {
-                last=i;
-                neg=n;
-                pro=1;
-            }
+            ans=max(ans,pos);
         }
         return ans;
     }
