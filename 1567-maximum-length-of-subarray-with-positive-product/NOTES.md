@@ -1,23 +1,3 @@
-solution 1:
-find the lst index where product was negative and  last index where product was zero
-```
-​
-class Solution {
-public:
-int getMaxLen(vector<int>& nums)
-{
-int n=size(nums),neg=n,last=-1,pro=1,ans=0;
-for(int i=0;i<n;i++)
-{
-pro*=((nums[i]>0)-(nums[i]<0));
-if(pro>0)
-{
-ans=max(ans,i-last);
-}
-if(pro<0)
-{
-neg=min(i,neg);
-ans=max(ans,i-neg);
 }
 if(pro==0)
 {
@@ -29,4 +9,27 @@ pro=1;
 return ans;
 }
 };
+```
+​
+assume you are at index i: find the total length os + and neg product starting from thix index.
+```
+int getMaxLen(vector<int>& nums)
+{
+int n=size(nums),neg=0,pos=0,ans=0;
+for(int i=0;i<n;i++)
+{
+pos++;
+if(neg!=0) neg++;
+if(nums[i]<0)
+{
+swap(pos,neg);
+}
+if(!nums[i])
+{
+pos=0,neg=0;
+}
+ans=max(ans,pos);
+}
+return ans;
+}
 ```
