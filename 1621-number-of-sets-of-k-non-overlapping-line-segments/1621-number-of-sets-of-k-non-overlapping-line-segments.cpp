@@ -22,7 +22,19 @@ public:
     }
     int numberOfSets(int n, int k) 
     {
-        memo.resize(n+1,vector<vector<int>>(k+1,vector<int>(2,-1)));
-        return helper(n,k,false);
+        memo.resize(n+1,vector<vector<int>>(k+1,vector<int>(2,0)));
+        for(int i=0;i<=n;i++)
+            memo[i][0][0]=1,memo[i][0][1]=1;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=k;j++)
+            {
+                
+                  memo[i][j][1]=(1LL*(memo[i-1][j][1]+memo[i][j-1][0]))%mod;
+                  memo[i][j][0]=(1LL*(memo[i-1][j][1]+memo[i-1][j][0]))%mod;                    
+                
+            }
+        }
+        return memo[n][k][0];
     }
 };
