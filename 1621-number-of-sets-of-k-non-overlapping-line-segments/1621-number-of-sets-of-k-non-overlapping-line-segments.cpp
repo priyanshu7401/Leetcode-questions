@@ -7,7 +7,7 @@ public:
     {
         if(k==0)
             return 1;
-        if(n==0)
+        if(n==0||k>n)
             return 0;
         if(memo[n][k][start]!=-1)
             return memo[n][k][start];
