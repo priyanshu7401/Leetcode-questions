@@ -9,10 +9,16 @@ public:
      for(int i=0;i<size(s)-1;i++)
      {
            num+=(s[i]=='1');
-           if(num%2==0&&map.count(num/2)&&(ones-num)==num/2)
-               count=1LL*(count+map[num/2])%mod;
+           // if(num%2==0&&map.count(num/2)&&(ones-num)==num/2)
+           //     count=1LL*(count+map[num/2])%mod;
            map[num]++;
      }
-        return count;
+     if(ones%3)
+         return 0;
+     if(ones==0)
+     {
+         return (1LL*map[0]*(map[0]-1)/2)%mod;
+     }
+        return (1LL*map[ones/3]*map[(2*ones)/3])%mod;
     }
 };
