@@ -4,21 +4,18 @@ public:
     int numWays(string s) 
     {
      unordered_map<int,int>map;
-     int ones=count(s.begin(), s.end(), '1');
      int num=0,count=0;
-     for(int i=0;i<size(s)-1;i++)
+     for(int i=0;i<size(s);i++)
      {
            num+=(s[i]=='1');
-           // if(num%2==0&&map.count(num/2)&&(ones-num)==num/2)
-           //     count=1LL*(count+map[num/2])%mod;
            map[num]++;
      }
-     if(ones%3)
+     if(num%3)
          return 0;
-     if(ones==0)
+     if(num==0)
      {
-         return (1LL*map[0]*(map[0]-1)/2)%mod;
+         return (1LL*(map[0]-1)*(map[0]-2)/2)%mod;
      }
-        return (1LL*map[ones/3]*map[(2*ones)/3])%mod;
+        return (1LL*map[num/3]*map[(2*num)/3])%mod;
     }
 };
