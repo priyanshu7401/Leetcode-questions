@@ -11,14 +11,13 @@ public:
             {
                 mini=min(num_init,mini);
                 i--;
-                ans=max(ans,mini*(j-i+1));
             }
             else
             {
                 mini=min(num_last,mini);
-                j++;
-                ans=max(ans,mini*(j-i+1));             
+                j++;        
             }
+            ans=max(ans,mini*(j-i+1));     
         }
         return ans;
     }
