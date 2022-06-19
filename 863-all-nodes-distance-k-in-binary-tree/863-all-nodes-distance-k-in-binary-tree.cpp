@@ -29,7 +29,7 @@ public:
         }
         if(R>=0) 
         {
-            mp[root]=-R;
+            mp[root]=R;
             return R+1;
         }
         
@@ -39,10 +39,11 @@ public:
     {
         if(root==NULL)
             return;
+        if(mp.count(root))length=mp[root];
+        // if length increase and we have some element in that path we are updating the length so it will never be == k for incorrect node.
         if(length==k)
         {
             ans.push_back(root->val);
-            return;
         }
         dfs(root->left,length+1,k);
         dfs(root->right,length+1,k);
@@ -50,22 +51,7 @@ public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) 
     {
         int depth=find(root,target);
-        for(auto [root,length]:mp)
-        {
-            if(abs(length)==k)
-            {
-                ans.push_back(root->val);
-                continue;
-            }
-            if(abs(length)>k)
-            {
-                continue;
-            }
-            if(length>=0)
-               dfs(root->right,abs(length)+1,k);
-            if(length<=0)
-               dfs(root->left,abs(length)+1,k); 
-        }
+        dfs(root,mp[root],k);
         return ans;
     }
 };
