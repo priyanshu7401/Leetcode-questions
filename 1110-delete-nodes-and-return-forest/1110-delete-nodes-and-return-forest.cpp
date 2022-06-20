@@ -16,10 +16,9 @@ public:
     {
         if(root==NULL)
             return NULL;
-        TreeNode* L=dfs(root->left,set);
-        TreeNode* R=dfs(root->right,set);
-        root->left=L;
-        root->right=R;
+        root->left=dfs(root->left,set);
+        root->right=dfs(root->right,set);
+
         if(set.find(root->val)!=set.end())
         {
             if(root->left)ans.push_back(root->left);
