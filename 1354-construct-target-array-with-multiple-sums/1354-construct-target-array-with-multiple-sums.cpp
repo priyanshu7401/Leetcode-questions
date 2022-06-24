@@ -9,7 +9,7 @@ public:
             int num=pq.top();
             pq.pop();
             sum-=num;
-            if (num == 1 || sum == 1)
+            if (sum == 1)
                 return true;
             if(sum>=num||sum==0||num%sum==0)
                 return false;
