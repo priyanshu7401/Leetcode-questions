@@ -2,8 +2,6 @@ class Solution {
 public:
     int dfs(int n,vector<vector<pair<int,bool>>>&adj,int start,vector<int>&visited)
     {
-        if(visited[start])
-            return 0;
         visited[start]=1;
         int ans=0;
         for(int i=0;i<adj[start].size();i++)
