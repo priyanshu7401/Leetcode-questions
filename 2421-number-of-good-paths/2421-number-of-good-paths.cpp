@@ -1,13 +1,11 @@
 class Solution {
 public:
-    int parent[100001]={0};
-    int rank[100001]={0};
-    
+    int parent[100001]={0};   
     int find(int parent[],int i)
     {
         if(parent[i]==i)
             return i;
-        return parent[i]=find(parent,parent[i]);//path compression
+        return parent[i]=find(parent,parent[i]);
     }
     
     int numberOfGoodPaths(vector<int>& vals, vector<vector<int>>& edges) 
@@ -20,12 +18,12 @@ public:
         
         sort(begin(edges),end(edges),mycmp);
         
-        for(int i=0;i<n;i++)parent[i]=i, rank[i]=0;
+        for(int i=0;i<n;i++)parent[i]=i;
 
         int maxi=-1;
         for(auto vec:edges)
         {
-                maxi=max(maxi,max(vals[vec[0]],vals[vec[1]]));
+                maxi=max(vals[vec[0]],vals[vec[1]]);
             
                 int par0=find(parent,vec[0]);
                 int par1=find(parent,vec[1]);
