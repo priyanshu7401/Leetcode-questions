@@ -1,6 +1,6 @@
 class LUPrefix {
-    unordered_set<int>s;
-    int i=0;
+    int vec[100001]={0};
+    int i=1;
 public:
 
     LUPrefix(int n) 
@@ -8,13 +8,13 @@ public:
     }
     void upload(int video) 
     {
-        s.insert(video);
-        while(s.find(i+1)!=s.end())i++;
+        vec[video]=1;
+        while(vec[i])i++;
     }
     
     int longest() 
     {
-        return i;
+        return i-1;
     }
 };
 
