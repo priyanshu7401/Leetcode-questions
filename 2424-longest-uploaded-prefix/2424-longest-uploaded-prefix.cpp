@@ -1,11 +1,9 @@
 class LUPrefix {
 public:
-    vector<int>vec;
-    int i=0;
+    int vec[100001]={0};
+    int i=1;
     LUPrefix(int n) 
     {
-        vec.resize(200000,0);  
-        i=1;
     }
     void upload(int video) 
     {
