@@ -1,6 +1,6 @@
 class LUPrefix {
-    int vec[100001]={0};
-    int i=1;
+    unordered_set<int>s;
+    int last=0;
 public:
 
     LUPrefix(int n) 
@@ -8,19 +8,12 @@ public:
     }
     void upload(int video) 
     {
-        vec[video]=1;
-        while(vec[i])i++;
+        s.insert(video);
+        while(s.count(last+1))last++;
     }
     
     int longest() 
     {
-        return i-1;
+        return last;
     }
 };
-
-/**
- * Your LUPrefix object will be instantiated and called as such:
- * LUPrefix* obj = new LUPrefix(n);
- * obj->upload(video);
- * int param_2 = obj->longest();
- */
