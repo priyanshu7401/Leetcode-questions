@@ -1,7 +1,8 @@
 class LUPrefix {
-public:
     int vec[100001]={0};
     int i=1;
+public:
+
     LUPrefix(int n) 
     {
     }
